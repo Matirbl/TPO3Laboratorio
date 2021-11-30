@@ -22,6 +22,37 @@ app.post("/instrumento/:id", (req, res) => {
   res.send("se agregó un instrumento");
 });
 
+app.post('/instrumentos', [
+  query('populares'),
+] , (req, res) => {
+
+      const errors = validationResult(req);
+      if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const newInstrumentosValue = {
+        "textoDeFondo": `${req.params}`,
+        //"imagen": `${moment().format('DD-MM-YYYY')}`,
+        "titulo": `${req.params}`,
+        "fecha": `${req.params}`,
+        "descripcion": `${req.params}`,
+        "boton": `$${req.params}`
+      };
+
+      data.instrumentos.push(newInstrumentoValue);
+
+      try{
+        fs.writeFileSync("./data.json", JSON.stringify(data));
+      } catch(err) {
+        console.log(err);
+      }
+
+    res.json(newInstrumentoValue);
+
+});
+
+
 app.put("/instrumento/:id", (req, res) => {
   console.log(req.body);
   res.send("user " + req.params.id + " actualizado");
