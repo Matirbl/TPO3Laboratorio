@@ -1,28 +1,69 @@
 {
   "instrumentos": [
+  
     {
-      "id": 1,
-      "fecha": "16-11-2020",
-      "compra": "79.95",
-      "venta": "$83.32"
-    },
-    {
-      "id": 1,
-      "fecha": "17-11-2020",
-      "compra": "$80.03",
-      "venta": "$83.34"
-    },
-    {
-      "id": 2,
-      "fecha": "18-11-2020",
-      "compra": "$80.09",
-      "venta": "$83.40"
-    },
-    {
-      "id": 3,
-      "fecha": "19-11-2020",
-      "compra": "$80.29",
-      "venta": "$83.55"
+      "textoDeFondo": "Apocalypse",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "E - 7 Schecter Apocalypse",
+      "fecha": "29/11/21",
+      "descripcion": "La Schecter E-7 Apocalypse es una guitarra electrica de cuerpo....",
+      "boton": "saber más"
+    },{
+      "textoDeFondo": "KORG Nautilus",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "KORG Nautilus",
+      "fecha": "28/11/21",
+      "descripcion": "NAUTILUS supera los límites de lo que un sintetizador de....",
+      "boton": "saber más"
+    },{
+      "textoDeFondo": "Zildjian Mega Doom",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Mega Doom",
+      "fecha": "27/11/21",
+      "descripcion": "Un platillo monstruoso de 22 que brama golpes oscuros y....",
+      "boton": "saber más"
+    },{
+      "textoDeFondo": "Player-plus",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Fender Player plus Jazz Bass",
+      "fecha": "25/11/21",
+      "descripcion": "Por su atractivo acabado, su excelente relación calidad/precio ....",
+      "boton": "saber más"
+    },{
+      "textoDeFondo": "RG530DXZ",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Ibanez RG530DXZ",
+      "fecha": "24/11/21",
+      "descripcion": "Con su juego de pastillas Jazz Bass Player Plus Noiseless....",
+      "boton": "saber más"
+    }, {
+      "textoDeFondo": "YAMAHA YTS - 82Z",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Yamaha YTS-82Z",
+      "fecha": "23/11/21",
+      "descripcion": "Un sonido potente y la capacidad de tocar pasajes rápidos sin....",
+      "boton": "saber más"
+    }, {
+      "textoDeFondo": "Flautas de resina ABS",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Flautas dulces de resina ABS",
+      "fecha": "22/11/21",
+      "descripcion": "Las flautas dulces de resina ABS son duraderas y fáciles de....",
+      "boton": "saber más"
+    }, {
+      "textoDeFondo": "V10G/V10SG",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Yamaha V10G",
+      "fecha": "21/11/21",
+      "descripcion": "El V10G es un violín inspirado en Guarneri que produce un sonido....",
+      "boton": "saber más"
+    }, {
+      "textoDeFondo": "Pearl Duoluxe",
+      //"imagen": src="imagenes/Instrumentos Populares/KorgNautilus.jpg",
+      "titulo": "Pearl Snare Drums Duoluxe",
+      "fecha": "20/11/21",
+      "descripcion": "Una fórmula clásica de Pearl para un sonido de caja excepcional....",
+      "boton": "saber más"
     }
   ]
 }
