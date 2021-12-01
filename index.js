@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const data = require("./instrumentos.json");
 const { query, validationResult } = require("express-validator");
 const app = express();
+const fs = require("fs");
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -31,30 +32,31 @@ app.post("/instrumento/:id", (req, res) => {
   res.send("se agregó un instrumento");
 });
 
-// app.post("/instrumentos", [!query("textoDeFondo").isEmpty], (req, res) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
+app.post("/instrumentos", [query("textoDeFondo").notEmpty()], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  console.log("Llegué bien");
+  console.log(req.param("textoDeFondo"));
+  const newInstrumentoValue = {
+    textoDeFondo: `${req.query.textoDeFondo}`,
+    titulo: `${req.query.titulo}`,
+    fecha: `${req.query.fecha}`,
+    descripcion: `${req.query.descripcion}`,
+    boton: `${req.query.boton}`,
+  };
 
-//   const newInstrumentosValue = {
-//     textoDeFondo: `${req.params}`,
-//     titulo: `${req.titulo}`,
-//     fecha: `${req.fecha}`,
-//     descripcion: `${req.descripcion}`,
-//     boton: `${req.boton}`,
-//   };
+  data.instrumentos.push(newInstrumentoValue);
 
-//   data.instrumentos.push(newInstrumentoValue);
+  try {
+    fs.writeFileSync("./instrumentos.json", JSON.stringify(data));
+  } catch (err) {
+    console.log(err);
+  }
 
-// try {
-//   fs.writeFileSync("./data.json", JSON.stringify(data));
-// } catch (err) {
-//   console.log(err);
-// }
-
-// res.json(newInstrumentoValue);
-// });
+  res.json(newInstrumentoValue);
+});
 
 app.put("/instrumento/:id", (req, res) => {
   console.log(req.body);

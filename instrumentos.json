@@ -64,6 +64,13 @@
       "fecha": "20/11/21",
       "descripcion": "Una fórmula clásica de Pearl para un sonido de caja excepcional....",
       "boton": "saber más"
+    },
+    {
+      "textoDeFondo": "strandberg",
+      "titulo": "strandberg",
+      "fecha": "01/12/21",
+      "descripcion": "Una buena guitarra ",
+      "boton": "saber menos"
     }
   ]
 }
