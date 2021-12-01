@@ -26,12 +26,6 @@ app.get("/instrumento/:titulo", (req, res) => {
   }
 });
 
-app.post("/instrumento/:id", (req, res) => {
-  console.log(req.body);
-  console.log(req.params);
-  res.send("se agregó un instrumento");
-});
-
 app.post("/instrumentos", [query("textoDeFondo").notEmpty()], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
