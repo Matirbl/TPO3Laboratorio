@@ -3,13 +3,15 @@
     {
       "textoDeFondo": "Apocalypse",
       "titulo": "E - 7 Schecter Apocalypse",
+      "imagen": "imagenes/guitarraCarta.jpg",
       "fecha": "29/11/21",
       "descripcion": "La Schecter E-7 Apocalypse es una guitarra electrica de cuerpo....",
-      "boton": "saber más"
+      "boton": "https://www.schecterguitars.com/guitars/e-7-apocalypse-red-reign-detail#reviews"
     },
     {
       "textoDeFondo": "KORG Nautilus",
       "titulo": "KORG Nautilus",
+      "imagen": "imagenes/bateriaCarta.jpg",
       "fecha": "28/11/21",
       "descripcion": "NAUTILUS supera los límites de lo que un sintetizador de....",
       "boton": "saber más"

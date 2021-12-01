@@ -22,6 +22,7 @@
 $( document ).ready(function() {
     console.log( "ready!" );
     cargarGuitarra("E - 7 Schecter Apocalypse", "guitarra1");
+    cargarGuitarra("KORG Nautilus", "guitarra2");
 });
 
   function cargarGuitarra(titulo,guitarra) {
@@ -35,10 +36,15 @@ $( document ).ready(function() {
             success:  function (data) {
               console.log(data);
               $("#"+guitarra+"_textoDeFondo").html(data['textoDeFondo']);
+              $("#"+guitarra+"_titulo").html(data['titulo']);
+              $("#"+guitarra+"_imagen").attr("src",data['imagen']);
+              $("#"+guitarra+"_fecha").html(data['fecha']);
+              $("#"+guitarra+"_descripcion").html(data['descripcion']);
+              $("#"+guitarra+"_boton").attr("href",data['boton']);
+              
             }
         }).fail( function() {
           $("#"+guitarra+"_textoDeFondo").html('guitar not found');
-           // $("#modal_administrators_messages").html('<div class="alert alert-danger fade show"> <button type="button" class="close" data-dismiss="alert">&times;</button> <strong> {{ trans("forms.danger") }}! </strong> {{ trans("administrators.danger_edited_administrator") }} </div>');
         });
         return false;       
     }
@@ -117,22 +123,38 @@ $( document ).ready(function() {
         <div class="card">
           <div class="txtFondo" id="guitarra1_textoDeFondo"></div>
           <div class="imgBx">
-            <img
+            <img id="guitarra1_imagen"
               class="img-card"
-              src="imagenes/Instrumentos Populares/E7ApocRR-large.jpg"
+              src=""
             />
           </div>
           <div class="contentBx">
-            <h2>E-7 Schecter Apocalypse</h2>
+            <h2 id="guitarra1_titulo"></h2>
             <div class="fecha">
-              <h3>Instrumento popular de hoy</h3>
+              <h3 id="guitarra1_fecha"></h3>
             </div>
             <div class="descripcion">
-              <h3>
-                La Schecter E-7 Apocalypse es una guitarra electrica de cuerpo
-                sólido robusto construida por expertos para lograr una velocidad
-                increíble junto a un gran tono.
-              </h3>
+              <h3 id="guitarra1_descripcion"></h3>
+            </div>
+            <a id="guitarra1_boton">Más información</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="txtFondo" id="guitarra2_textoDeFondo"></div>
+          <div class="imgBx">
+            <img id="guitarra2_imagen"
+              class="img-card"
+              src=""
+            />
+          </div>
+          <div class="contentBx">
+            <h2 id="guitarra2_titulo"></h2>
+            <div class="fecha">
+              <h3 id="guitarra2_fecha"></h3>
+            </div>
+            <div class="descripcion">
+              <h3 id="guitarra2_descripcion"></h3>
             </div>
             <a
               href="https://www.schecterguitars.com/guitars/e-7-apocalypse-red-reign-detail#reviews"
@@ -141,7 +163,7 @@ $( document ).ready(function() {
           </div>
         </div>
 
-        <div class="card">
+        <!-- <div class="card">
           <div class="txtFondo">KORG Nautilus</div>
           <div class="imgBx">
             <img
@@ -166,9 +188,9 @@ $( document ).ready(function() {
               >Más información</a
             >
           </div>
-        </div>
+        </div> -->
 
-        <div class="card">
+        <!-- <div class="card">
           <div class="txtFondo">Mega Doom</div>
           <div class="imgBx">
             <img
@@ -357,7 +379,7 @@ $( document ).ready(function() {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- FOOTER -->
     <footer class="footer-custom">
