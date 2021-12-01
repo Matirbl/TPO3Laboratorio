@@ -20,18 +20,36 @@ app.get("/instrumento/:titulo", (req, res) => {
   if (elem.length > 0) {
     res.json(elem[0]);
   } else {
-    res
-      .status(404)
-      .json({ msg: `No Value with the id of ${req.params.titulo}` });
+    res.status(404).json({
+      msg: ` 404 No existe el instrumento solicitado ${req.params.titulo}`,
+    });
   }
 });
+
+app.get(
+  "/listaInstrumentos",
+  [
+    query("limit").isInt({ min: 0, max: 100 }),
+    query("from").isInt({ min: 0, max: data.instrumentos.length - 1 }),
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const limit = req.query.limit;
+    const from = req.query.from;
+
+    res.status(200).json(data.instrumentos.slice(from, limit));
+  }
+);
 
 app.post("/instrumentos", [query("textoDeFondo").notEmpty()], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  console.log("Llegué bien");
   console.log(req.param("textoDeFondo"));
   const newInstrumentoValue = {
     textoDeFondo: `${req.query.textoDeFondo}`,
