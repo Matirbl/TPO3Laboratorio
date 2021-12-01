@@ -20,36 +20,36 @@
     <script>
       $(document).ready(function () {
         console.log("ready!");
-        cargarGuitarra("E - 7 Schecter Apocalypse", "instrumento1");
-        cargarGuitarra("KORG Nautilus", "instrumento2");
-        cargarGuitarra("Mega Doom", "instrumento3");
-        cargarGuitarra("Fender Player plus Jazz Bass", "instrumento4");
-        cargarGuitarra("Ibanez RG530DXZ", "instrumento5");
-        cargarGuitarra("Yamaha YTS-82Z", "instrumento6");
-        cargarGuitarra("Flautas dulces de resina ABS", "instrumento7");
-        cargarGuitarra("Yamaha V10G", "instrumento8");
-        cargarGuitarra("Pearl Snare Drums Duoluxe", "instrumento9");
+        cargarInstrumento("E - 7 Schecter Apocalypse", "instrumento1");
+        cargarInstrumento("KORG Nautilus", "instrumento2");
+        cargarInstrumento("Mega Doom", "instrumento3");
+        cargarInstrumento("Fender Player plus Jazz Bass", "instrumento4");
+        cargarInstrumento("Ibanez RG530DXZ", "instrumento5");
+        cargarInstrumento("Yamaha YTS-82Z", "instrumento6");
+        cargarInstrumento("Flautas dulces de resina ABS", "instrumento7");
+        cargarInstrumento("Yamaha V10G", "instrumento8");
+        cargarInstrumento("Pearl Snare Drums Duoluxe", "instrumento9");
       });
 
-      function cargarGuitarra(titulo, guitarra) {
+      function cargarInstrumento(titulo, instrumento) {
         $.ajax({
           url: "http://localhost:5000/instrumento/" + titulo,
           type: "get",
           dataType: "json",
           beforeSend: function () {
-            $("#" + guitarra + "_textoDeFondo").html("cargando...");
+            $("#" + instrumento + "_textoDeFondo").html("cargando...");
           },
           success: function (data) {
             console.log(data);
-            $("#" + guitarra + "_textoDeFondo").html(data["textoDeFondo"]);
-            $("#" + guitarra + "_titulo").html(data["titulo"]);
-            $("#" + guitarra + "_imagen").attr("src", data["imagen"]);
-            $("#" + guitarra + "_fecha").html(data["fecha"]);
-            $("#" + guitarra + "_descripcion").html(data["descripcion"]);
-            $("#" + guitarra + "_boton").attr("href", data["boton"]);
+            $("#" + instrumento + "_textoDeFondo").html(data["textoDeFondo"]);
+            $("#" + instrumento + "_titulo").html(data["titulo"]);
+            $("#" + instrumento + "_imagen").attr("src", data["imagen"]);
+            $("#" + instrumento + "_fecha").html(data["fecha"]);
+            $("#" + instrumento + "_descripcion").html(data["descripcion"]);
+            $("#" + instrumento + "_boton").attr("href", data["boton"]);
           },
         }).fail(function () {
-          $("#" + guitarra + "_textoDeFondo").html("guitar not found");
+          $("#" + instrumento + "_textoDeFondo").html("guitar not found");
         });
         return false;
       }
@@ -122,7 +122,7 @@
 
     <div class="contenido">
       <div class="container">
-        <!-- CARDS INSTRUMENTOS POPULARES-->
+        <!--CARDS INSTRUMENTOS POPULARES-->
 
         <div class="card">
           <div class="txtFondo" id="instrumento1_textoDeFondo"></div>
@@ -259,6 +259,7 @@
             <a id="instrumento8_boton">Más información</a>
           </div>
         </div>
+
         <div class="card">
           <div class="txtFondo" id="instrumento9_textoDeFondo"></div>
           <div class="imgBx">
