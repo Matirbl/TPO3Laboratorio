@@ -5,7 +5,7 @@
     <title>Casa musical GM</title>
     <meta
       name="description"
-      content="Bienvenido a la página web musical de la UNCO"
+      content="Bienvenido a la página web musical"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="estilos/css/bootstrap.min.css" rel="stylesheet" />
@@ -33,7 +33,7 @@
 
       function cargarInstrumento(titulo, instrumento) {
         $.ajax({
-          url: "http://localhost:5000/instrumento/" + titulo,
+          url: "http://localhost:5000/api/" + titulo,
           type: "get",
           dataType: "json",
           beforeSend: function () {
