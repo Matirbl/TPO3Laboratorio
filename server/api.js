@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const dataInstrument = require("./instrumentos.json");
-//const functionInstruments = require("./functionInstruments");
+const dataInstrument = require("./instruments.json");
+const functionInstruments = require("./functionInstruments");
 const path = require("path");
 const { query, validationResult, body } = require("express-validator");
 const fs = require("fs");
 
-// Get
+//Get
 router.get("/", (req, res) => {
-  // res.json(dataInstrument);
-  res.sendFile(__dirname + "/public/indice.html");
+  res.json(dataInstrument);
+  // res.sendFile(__dirname + "../public/indice.html");
 });
 
 //Get list
@@ -27,6 +27,7 @@ router.get(
     const limit = req.query.limit;
     const from = req.query.from;
     res.status(200).json(dataInstrument.instruments.slice(from, limit));
+    // functionInstruments.cargarInstrumentos(dataInstrument.instruments.slice(from, limit));
   }
 );
 

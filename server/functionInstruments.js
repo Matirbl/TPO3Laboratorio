@@ -1,6 +1,6 @@
-const instrumentsData = require("./instrumentos.json");
-
+const instrumentsData = require("./instruments.json");
 const instrumentsArray = [];
+// const contenedor = document.querySelector('.contenido');
 
 instrumentsArray.forEach;
 
@@ -20,13 +20,15 @@ function getRange(from, limit) {
 }
 
 function cargarInstrumentos(arregloInstrumentos) {
-
-  arregloInstrumentos.forEach((value)=>{
-
-
-    
-  })
+  console.log(arregloInstrumentos);
+  arregloInstrumentos.forEach((value) => {
+    let h1 = document.createElement("h1");
+    h1.innerText = "value.titulo";
+    contenedor.appendChild(h1);
+  });
 }
+
+
 
 // function devolverTitulo(tituloInstrumento) {
 //   let arregloInst = [];
@@ -38,4 +40,4 @@ function cargarInstrumentos(arregloInstrumentos) {
 //   return arregloInst;
 // }
 
-module.exports = { getByTitle, getRange, getLenght };
+module.exports = { getByTitle, getRange, getLenght, cargarInstrumentos };
