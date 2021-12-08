@@ -75,17 +75,10 @@
     {
       "textoDeFondo": "strandberg",
       "titulo": "strandberg",
-      "fecha": "01/12/21",
-      "descripcion": "Una buena guitarra ",
-      "boton": "saber menos"
-    },
-    {
-      "textoDeFondo": "strandberg",
-      "titulo": "strandberg",
-      "fecha": "01/12/21",
-      "descripcion": "Una buena guitarra ",
-      "boton": "saber menos"
+      "fecha": "19/11/21",
+      "imagen": "imagenes/Instrumentos Populares/Strandberg.jpg",
+      "descripcion": "Las nuevas especificaciones y características se consideraron e implementaron cuidadosamente con el futuro en mente, tanto estética como funcionalmente. ",
+      "boton": "https://strandbergguitars.com/"
     }
-
   ]
 }

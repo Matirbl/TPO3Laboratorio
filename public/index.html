@@ -14,6 +14,39 @@
       src="https://kit.fontawesome.com/151ff178bd.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        console.log("ready!");
+        cargarInstrumento("E - 7 Schecter Apocalypse", "inst1");
+        cargarInstrumento("Ibanez RG530DXZ", "inst2");
+        cargarInstrumento("strandberg", "inst3");
+      });
+
+      function cargarInstrumento(titulo, instrumento) {
+        $.ajax({
+          url: "http://localhost:5000/api/" + titulo,
+          type: "get",
+          dataType: "json",
+          beforeSend: function () {
+            $("#" + instrumento + "_h4").html("cargando...");
+          },
+          success: function (data) {
+            console.log(data);
+            $("#" + instrumento + "_h4").html(data["titulo"]);
+            $("#" + instrumento + "_img").attr("src", data["imagen"]);
+            $("#" + instrumento + "_desc").html(
+              data["descripcion"].substr(0, 80) + "..."
+            );
+            $("#" + instrumento + "_btn").attr("href", data["boton"]);
+          },
+        }).fail(function () {
+          $("#" + instrumento + "_h4").html("guitar not found");
+        });
+        return false;
+      }
+    </script>
   </head>
 
   <body>
@@ -171,6 +204,36 @@
         <button type="button" class="btn btn-primary btn-lg">
           <a href="instrumentosPopulares.html">Instrumentos Populares</a>
         </button>
+      </div>
+
+      <h1 id="Anuncio">NUESTRAS GUITARRAS MÁS VENDIDAS</h1>
+      <div class="container">
+        <div class="card">
+          <img id="inst1_img" src="" />
+          <h4 id="inst1_h4"></h4>
+          <p id="inst1_desc"></p>
+          <button type="button" class="btn btn-primary">
+            <a id="inst1_btn" href="#">Conocer más</a>
+          </button>
+        </div>
+
+        <div class="card">
+          <img id="inst2_img" src="" />
+          <h4 id="inst2_h4"></h4>
+          <p id="inst2_desc"></p>
+          <button type="button" class="btn btn-primary">
+            <a id="inst2_btn" href="#">Conocer más</a>
+          </button>
+        </div>
+
+        <div class="card">
+          <img id="inst3_img" src="" />
+          <h4 id="inst3_h4"></h4>
+          <p id="inst3_desc"></p>
+          <button type="button" class="btn btn-primary">
+            <a id="inst3_btn" href="#">Conocer más</a>
+          </button>
+        </div>
       </div>
     </div>
 
