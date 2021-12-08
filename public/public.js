@@ -100,11 +100,6 @@ const updateInstruments = async (from, limit) => {
 
 loadInstruments(from, limit);
 
-if (contenedor.hasChildNodes) {
-  console.log("tiene hijos");
-  console.log(contenedor.childNodes);
-}
-
 const nextPage = () => {
   limit += 3;
   from += 3;
