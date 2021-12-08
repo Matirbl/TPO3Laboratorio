@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const dataInstrument = require("./instruments.json");
-const functionInstruments = require("./functionInstruments");
 const path = require("path");
 const { query, validationResult, body } = require("express-validator");
 const fs = require("fs");
@@ -9,25 +8,28 @@ const fs = require("fs");
 //Get
 router.get("/", (req, res) => {
   res.json(dataInstrument);
-  // res.sendFile(__dirname + "../public/indice.html");
 });
 
 //Get list
 router.get(
   "/listInstruments",
   [
-    query("limit").isInt({ min: 0, max: 100 }),
-    query("from").isInt({ min: 0, max: dataInstrument.instruments.length - 1 }),
+    // query("limit").isInt({ min: 0, max: dataInstrument.instruments.length  }),
+    // query("from").isInt({ min: 0, max: dataInstrument.instruments.length - 1 }),
   ],
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const limit = req.query.limit;
-    const from = req.query.from;
+    let limit = req.query.limit;
+    let from = req.query.from;
+
+    if (limit >= dataInstrument.instruments.length) {
+      limit = dataInstrument.instruments.length ;
+      from = limit - 3;
+    }
     res.status(200).json(dataInstrument.instruments.slice(from, limit));
-    // functionInstruments.cargarInstrumentos(dataInstrument.instruments.slice(from, limit));
   }
 );
 
@@ -38,6 +40,7 @@ router.get("/:instrumentTitle", (req, res) => {
   );
   if (elem.length > 0) {
     res.json(elem[0]);
+    console.log(elem[0]);
   } else {
     res.status(404).json({
       msg: `404 No existe el instrumento solicitado ${req.query.instrumentTitle}`,

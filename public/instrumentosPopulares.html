@@ -7,50 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="estilos/css/bootstrap.min.css" rel="stylesheet" />
     <link href="estilos/personalizado/listaInstrumentos.css" rel="stylesheet" />
-    <!-- <script
+    <script
       src="https://kit.fontawesome.com/151ff178bd.js"
       crossorigin="anonymous"
-    ></script> -->
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        console.log("ready!");
-        cargarInstrumento("E - 7 Schecter Apocalypse", "instrumento1");
-        cargarInstrumento("KORG Nautilus", "instrumento2");
-        cargarInstrumento("Mega Doom", "instrumento3");
-        cargarInstrumento("Fender Player plus Jazz Bass", "instrumento4");
-        cargarInstrumento("Ibanez RG530DXZ", "instrumento5");
-        cargarInstrumento("Yamaha YTS-82Z", "instrumento6");
-        cargarInstrumento("Flautas dulces de resina ABS", "instrumento7");
-        cargarInstrumento("Yamaha V10G", "instrumento8");
-        cargarInstrumento("Pearl Snare Drums Duoluxe", "instrumento9");
-      });
-
-      function cargarInstrumento(titulo, instrumento) {
-        $.ajax({
-          url: "http://localhost:5000/api/" + titulo,
-          type: "get",
-          dataType: "json",
-          beforeSend: function () {
-            $("#" + instrumento + "_textoDeFondo").html("cargando...");
-          },
-          success: function (data) {
-            console.log(data);
-            $("#" + instrumento + "_textoDeFondo").html(data["textoDeFondo"]);
-            $("#" + instrumento + "_titulo").html(data["titulo"]);
-            $("#" + instrumento + "_imagen").attr("src", data["imagen"]);
-            $("#" + instrumento + "_fecha").html(data["fecha"]);
-            $("#" + instrumento + "_descripcion").html(data["descripcion"]);
-            $("#" + instrumento + "_boton").attr("href", data["boton"]);
-          },
-        }).fail(function () {
-          $("#" + instrumento + "_textoDeFondo").html("guitar not found");
-        });
-        return false;
-      }
-    </script> -->
+    ></script>
   </head>
 
   <body>
@@ -77,7 +37,7 @@
         <div id="MenuNavegacion" class="collapse navbar-collapse">
           <ul class="navbar-nav ms-3">
             <li class="nav-item">
-              <a class="nav-link" href="indice.html">inicio</a>
+              <a class="nav-link" href="index.html">inicio</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -87,7 +47,7 @@
                 data-bs-toggle="dropdown"
                 >instrumentos</a
               >
-              <!-- <ul class="dropdown-menu">
+              <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="#"
                     ><i class="fas fa-guitar"></i> Guitarras</a
@@ -108,7 +68,7 @@
                     ><i class="fas fa-keyboard"></i> Teclados</a
                   >
                 </li>
-              </ul> -->
+              </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">contacto</a></li>
             <li class="nav-item"><a class="nav-link" href="#">mas</a></li>
@@ -116,10 +76,18 @@
         </div>
       </div>
     </nav>
-
     <div class="contenido">
       <div class="container"></div>
+
+      <!-- <div id="lugarParaLaPaginacion"></div> -->
+      <section class="paginacion">
+        <ul>
+          <li><button class="btn btn-dark" onclick="prevPage()"><<</button></li>
+          <li><button class="btn btn-dark" onclick="nextPage()">>></button></li>
+        </ul>
+      </section>
     </div>
+
     <!-- FOOTER -->
     <footer class="footer-custom">
       <div class="container-fluid">
