@@ -26,7 +26,7 @@ router.get(
     let from = req.query.from;
 
     if (limit >= dataInstrument.instruments.length) {
-      limit = dataInstrument.instruments.length ;
+      limit = dataInstrument.instruments.length;
       from = limit - 3;
     }
     res.status(200).json(dataInstrument.instruments.slice(from, limit));
