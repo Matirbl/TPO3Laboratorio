@@ -2,14 +2,44 @@ const contenedor = document.querySelector(".container");
 const sectionPag = document.getElementById("lugarParaLaPaginacion");
 var from = 0;
 var limit = 3;
+var range = 3;
+
+const jsonInstrumentos = async (from, limit) => {
+  const allInstruments = await fetch(`http://localhost:5000/api`);
+  const instrumentsRet = await allInstruments.json();
+  console.log(instrumentsRet);
+  return instrumentsRet;
+};
+
+function fillCards(titulo, instrumento) {
+  $.ajax({
+    url: "http://localhost:5000/api/" + titulo,
+    type: "get",
+    dataType: "json",
+    beforeSend: function () {
+      $("#" + instrumento + "_h4").html("cargando...");
+    },
+    success: function (data) {
+      console.log(data);
+      $("#" + instrumento + "_h4").html(data["titulo"]);
+      $("#" + instrumento + "_img").attr("src", data["imagen"]);
+      $("#" + instrumento + "_desc").html(
+        data["descripcion"].substr(0, 80) + "..."
+      );
+      $("#" + instrumento + "_btn").attr("href", data["boton"]);
+    },
+  }).fail(function () {
+    $("#" + instrumento + "_h4").html("guitar not found");
+  });
+  return false;
+}
 
 const loadInstruments = async (from, limit) => {
   const instrumentosRecibidos = await fetch(
-    `http://localhost:5000/api/listInstruments?limit=${limit}&from=${from}`
+    `http://localhost:5000/api/list?limit=${limit}&from=${from}`
   );
-
   const instrumentosProcesados = await instrumentosRecibidos.json();
-  console.log(instrumentosProcesados);
+  // console.log(instrumentosProcesados);
 
   instrumentosProcesados.forEach((instrumento) => {
     const divCard = document.createElement("div");
@@ -68,9 +98,10 @@ const updateInstruments = async (from, limit) => {
   try {
     cards = contenedor.childNodes;
     const instrumentosRecibidos = await fetch(
-      `http://localhost:5000/api/listInstruments?limit=${limit}&from=${from}`
+      `http://localhost:5000/api/list?limit=${limit}&from=${from}` //hacerlo afuera y llamar
     );
-    console.log(instrumentosRecibidos);
+
+    // console.log(instrumentosRecibidos);
     if (instrumentosRecibidos.status == 200) {
       const instrumentosProcesados = await instrumentosRecibidos.json();
       console.log(cards);
@@ -80,16 +111,19 @@ const updateInstruments = async (from, limit) => {
         cardElements = cards[i].childNodes;
 
         cardElements[0].innerText = instrumentosProcesados[i].textoDeFondo;
-        cardElements[1].firstChild.src =instrumentosProcesados[i].imagen;
+        cardElements[1].firstChild.src = instrumentosProcesados[i].imagen;
         contentBxElements = cardElements[2].childNodes;
         console.log("Longitud del content " + contentBxElements.length);
 
         for (j = 0; j < contentBxElements.length; j++) {
           console.log(contentBxElements);
           contentBxElements[0].innerHTML = instrumentosProcesados[i].titulo;
-          contentBxElements[1].firstChild.innerHTML = instrumentosProcesados[i].fecha;
-          contentBxElements[2].firstChild.innerHTML = instrumentosProcesados[i].descripcion;
-          contentBxElements[3].firstChild.href= instrumentosProcesados[i].boton;
+          contentBxElements[1].firstChild.innerHTML =
+            instrumentosProcesados[i].fecha;
+          contentBxElements[2].firstChild.innerHTML =
+            instrumentosProcesados[i].descripcion;
+          contentBxElements[3].firstChild.href =
+            instrumentosProcesados[i].boton;
         }
       }
     }
@@ -98,16 +132,23 @@ const updateInstruments = async (from, limit) => {
   }
 };
 
-loadInstruments(from, limit);
+const instrumentosTotales = jsonInstrumentos();
+
+console.log("instrumentos populares: " + instrumentosTotales);
 
 const nextPage = () => {
-  limit += 3;
-  from += 3;
+  // if (limit + range <= instrumentosTotales.length) {
+  limit += range;
+  from += range;
+  console.log("valor from: " + from + "valor limit: " + limit);
+  // }
   updateInstruments(from, limit);
 };
 
 const prevPage = () => {
-  limit -= 3;
-  from -= 3;
+  // if (from - range >= 0) {
+  limit -= range;
+  from -= range;
+  // }
   updateInstruments(from, limit);
 };

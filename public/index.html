@@ -16,33 +16,10 @@
     <script>
       $(document).ready(function () {
         console.log("ready!");
-        cargarInstrumento("E - 7 Schecter Apocalypse", "inst1");
-        cargarInstrumento("Ibanez RG530DXZ", "inst2");
-        cargarInstrumento("strandberg", "inst3");
+        fillCards("E - 7 Schecter Apocalypse", "inst1");
+        fillCards("Ibanez RG530DXZ", "inst2");
+        fillCards("strandberg", "inst3");
       });
-
-      function cargarInstrumento(titulo, instrumento) {
-        $.ajax({
-          url: "http://localhost:5000/api/" + titulo,
-          type: "get",
-          dataType: "json",
-          beforeSend: function () {
-            $("#" + instrumento + "_h4").html("cargando...");
-          },
-          success: function (data) {
-            console.log(data);
-            $("#" + instrumento + "_h4").html(data["titulo"]);
-            $("#" + instrumento + "_img").attr("src", data["imagen"]);
-            $("#" + instrumento + "_desc").html(
-              data["descripcion"].substr(0, 80) + "..."
-            );
-            $("#" + instrumento + "_btn").attr("href", data["boton"]);
-          },
-        }).fail(function () {
-          $("#" + instrumento + "_h4").html("guitar not found");
-        });
-        return false;
-      }
     </script>
   </head>
 
@@ -169,6 +146,7 @@
       <!-- CARDS -->
 
       <h1 id="Anuncio">NUESTRAS GUITARRAS MÁS VENDIDAS</h1>
+
       <div class="container">
         <div class="card">
           <img id="inst1_img" src="" />
@@ -197,6 +175,7 @@
           </button>
         </div>
       </div>
+
       <!-- BOTON -->
       <div id="botonInstrumentos">
         <button type="button" class="btn btn-primary btn-lg">
@@ -235,6 +214,7 @@
       </div>
     </footer>
 
+    <script src="public.js"></script>
     <script src="estilos/js/bootstrap.min.js"></script>
     <script src="estilos/js/bootstrap.bundle.js"></script>
     <script src="estilos/js/bootstrap.bundle.min.js"></script>

@@ -23,12 +23,4 @@ app.listen(app.get("port"), () => {
   console.log(`server running on port ${app.get("port")}`);
 });
 
-/* 
-app.put("/instrumento/:id", (req, res) => {
-  console.log(req.body);
-  res.send("user " + req.params.id + " actualizado");
-});
-
-console.log(__dirname);
-
-app.use(express.static("public"));*/
+app.use(express.static("public"));

@@ -11,6 +11,14 @@
       src="https://kit.fontawesome.com/151ff178bd.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        console.log("Cargando Instrumentos populares");
+        loadInstruments(0, 3);
+      });
+    </script>
   </head>
 
   <body>
@@ -79,7 +87,6 @@
     <div class="contenido">
       <div class="container"></div>
 
-      <!-- <div id="lugarParaLaPaginacion"></div> -->
       <section class="paginacion">
         <ul>
           <li><button class="btn btn-dark" onclick="prevPage()"><<</button></li>

@@ -79,6 +79,13 @@
       "imagen": "imagenes/Instrumentos Populares/Strandberg.jpg",
       "descripcion": "Las nuevas especificaciones y características se consideraron e implementaron cuidadosamente con el futuro en mente, tanto estética como funcionalmente. ",
       "boton": "https://strandbergguitars.com/"
+    },
+    {
+      "textoDeFondo": "ExampleInstrument",
+      "titulo": "ExampleInstrumentTitle",
+      "fecha": "09/12/21",
+      "descripcion": "ExampleInstrumentDescription ",
+      "boton": "link-Example"
     }
   ]
 }
