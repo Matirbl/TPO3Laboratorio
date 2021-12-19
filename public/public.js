@@ -4,16 +4,9 @@ var from = 0;
 var limit = 3;
 var range = 3;
 
-const jsonInstrumentos = async (from, limit) => {
-  const allInstruments = await fetch(`http://localhost:5000/api`);
-  const instrumentsRet = await allInstruments.json();
-  console.log(instrumentsRet);
-  return instrumentsRet;
-};
-
 function fillCards(titulo, instrumento) {
   $.ajax({
-    url: "http://localhost:5000/api/" + titulo,
+    url: "http://localhost:5000/api/instrument/" + titulo,
     type: "get",
     dataType: "json",
     beforeSend: function () {
@@ -34,12 +27,19 @@ function fillCards(titulo, instrumento) {
   return false;
 }
 
+// const jsonInstrumentos = async () => {
+//   const allInstruments = await fetch(`http://localhost:5000/api`);
+//   const instrumentsRet = await allInstruments.json();
+//   console.log("asdasdasd" + instrumentsRet);
+//   return instrumentsRet;
+// };
+
 const loadInstruments = async (from, limit) => {
   const instrumentosRecibidos = await fetch(
     `http://localhost:5000/api/list?limit=${limit}&from=${from}`
   );
   const instrumentosProcesados = await instrumentosRecibidos.json();
-  // console.log(instrumentosProcesados);
+  console.log("Instrumentos procesados " + instrumentosProcesados);
 
   instrumentosProcesados.forEach((instrumento) => {
     const divCard = document.createElement("div");
@@ -98,10 +98,8 @@ const updateInstruments = async (from, limit) => {
   try {
     cards = contenedor.childNodes;
     const instrumentosRecibidos = await fetch(
-      `http://localhost:5000/api/list?limit=${limit}&from=${from}` //hacerlo afuera y llamar
+      `http://localhost:5000/api/list?limit=${limit}&from=${from}`
     );
-
-    // console.log(instrumentosRecibidos);
     if (instrumentosRecibidos.status == 200) {
       const instrumentosProcesados = await instrumentosRecibidos.json();
       console.log(cards);
@@ -113,7 +111,6 @@ const updateInstruments = async (from, limit) => {
         cardElements[0].innerText = instrumentosProcesados[i].textoDeFondo;
         cardElements[1].firstChild.src = instrumentosProcesados[i].imagen;
         contentBxElements = cardElements[2].childNodes;
-        console.log("Longitud del content " + contentBxElements.length);
 
         for (j = 0; j < contentBxElements.length; j++) {
           console.log(contentBxElements);
@@ -132,23 +129,17 @@ const updateInstruments = async (from, limit) => {
   }
 };
 
-const instrumentosTotales = jsonInstrumentos();
-
-console.log("instrumentos populares: " + instrumentosTotales);
-
 const nextPage = () => {
-  // if (limit + range <= instrumentosTotales.length) {
   limit += range;
   from += range;
   console.log("valor from: " + from + "valor limit: " + limit);
-  // }
+
   updateInstruments(from, limit);
 };
 
 const prevPage = () => {
-  // if (from - range >= 0) {
   limit -= range;
   from -= range;
-  // }
+
   updateInstruments(from, limit);
 };

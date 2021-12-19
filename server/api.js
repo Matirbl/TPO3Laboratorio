@@ -7,36 +7,13 @@ const fs = require("fs");
 
 //Get
 router.get("/", (req, res) => {
-  res.json(dataInstrument);
+  res.sendFile(path.join("C:/Users/Mati/Laboratorio TP3/public"));
 });
-
-//Get list (UTILIZAR ESTE ENDPOINT PARA CARGAR TODO )
-// router.get(
-//   "/list",
-//   [
-//     // query("limit").isInt({ min: 0, max: dataInstrument.instruments.length  }),
-//     // query("from").isInt({ min: 0, max: dataInstrument.instruments.length - 1 }),
-//   ],
-//   (req, res) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(400).json({ errors: errors.array() });
-//     }
-//     let limit = req.query.limit;
-//     let from = req.query.from;
-
-//     if (limit >= dataInstrument.instruments.length) {
-//       limit = dataInstrument.instruments.length;
-//       from = limit - 3;
-//     }
-//     res.status(200).json(dataInstrument.instruments.slice(from, limit));
-//   }
-// );
 
 router.get("/list", (req, res) => {
   let limit = req.query.limit;
   let from = req.query.from;
-  if (!(from >= 0) && !(limit >= 0)) {
+  if (from < 0 && limit < 0) {
     return res.status(400).json({ errors: errors.array() });
   }
 
@@ -48,8 +25,11 @@ router.get("/list", (req, res) => {
 });
 
 //Get by id
-router.get("/:instrumentTitle", (req, res) => { //instrument/:title
-  const elem = dataInstrument.instruments.find((value) => value.titulo === req.params.instrumentTitle);  //usar find(Hecho)
+router.get("/instrument/:title", (req, res) => {
+  //instrument/:title
+  const elem = dataInstrument.instruments.find(
+    (value) => value.titulo === req.params.title
+  ); //usar find(Hecho)
   if (!elem.isEmpty) {
     res.json(elem);
     console.log(elem);
@@ -89,8 +69,8 @@ router.post(
     try {
       fs.writeFileSync("./instruments.json", JSON.stringify(dataInstrument));
     } catch (err) {
-      res.send.status(500);//tirar un 500(Hecho)
-      console.log(err); 
+      res.send.status(500); //tirar un 500(Hecho)
+      console.log(err);
     }
 
     res.json(newInstrumentValue);
