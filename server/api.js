@@ -5,11 +5,6 @@ const path = require("path");
 const { query, validationResult, body } = require("express-validator");
 const fs = require("fs");
 
-//Get
-router.get("/", (req, res) => {
-  res.sendFile(path.join("C:/Users/Mati/Laboratorio TP3/public"));
-});
-
 router.get("/list", (req, res) => {
   let limit = req.query.limit;
   let from = req.query.from;
