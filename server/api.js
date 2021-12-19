@@ -5,13 +5,13 @@ const path = require("path");
 const { query, validationResult, body } = require("express-validator");
 const fs = require("fs");
 
+
 router.get("/list", (req, res) => {
   let limit = req.query.limit;
   let from = req.query.from;
   if (from < 0 && limit < 0) {
     return res.status(400).json({ errors: errors.array() });
   }
-
   if (limit >= dataInstrument.instruments.length) {
     limit = dataInstrument.instruments.length;
     from = limit - 3;

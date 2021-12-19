@@ -1,12 +1,13 @@
 const contenedor = document.querySelector(".container");
 const sectionPag = document.getElementById("lugarParaLaPaginacion");
+const urlbase = "http://localhost:5000/api/";
 var from = 0;
 var limit = 3;
 var range = 3;
 
 function fillCards(titulo, instrumento) {
   $.ajax({
-    url: "http://localhost:5000/api/instrument/" + titulo,
+    url: urlbase + "instrument/" + titulo,
     type: "get",
     dataType: "json",
     beforeSend: function () {
@@ -27,19 +28,11 @@ function fillCards(titulo, instrumento) {
   return false;
 }
 
-// const jsonInstrumentos = async () => {
-//   const allInstruments = await fetch(`http://localhost:5000/api`);
-//   const instrumentsRet = await allInstruments.json();
-//   console.log("asdasdasd" + instrumentsRet);
-//   return instrumentsRet;
-// };
-
 const loadInstruments = async (from, limit) => {
   const instrumentosRecibidos = await fetch(
-    `http://localhost:5000/api/list?limit=${limit}&from=${from}`
+    urlbase + `list?limit=${limit}&from=${from}`
   );
   const instrumentosProcesados = await instrumentosRecibidos.json();
-  console.log("Instrumentos procesados " + instrumentosProcesados);
 
   instrumentosProcesados.forEach((instrumento) => {
     const divCard = document.createElement("div");
@@ -98,7 +91,7 @@ const updateInstruments = async (from, limit) => {
   try {
     cards = contenedor.childNodes;
     const instrumentosRecibidos = await fetch(
-      `http://localhost:5000/api/list?limit=${limit}&from=${from}`
+      urlbase + `list?limit=${limit}&from=${from}`
     );
     if (instrumentosRecibidos.status == 200) {
       const instrumentosProcesados = await instrumentosRecibidos.json();
