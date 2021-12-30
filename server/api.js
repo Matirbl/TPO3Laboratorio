@@ -6,6 +6,7 @@ const { query, validationResult, body } = require("express-validator");
 const fs = require("fs");
 
 
+//Filtar por rango de valores.
 router.get("/list", (req, res) => {
   let limit = req.query.limit;
   let from = req.query.from;
@@ -19,9 +20,8 @@ router.get("/list", (req, res) => {
   res.status(200).json(dataInstrument.instruments.slice(from, limit));
 });
 
-//Get by id
+//Obtener objeto por ID.
 router.get("/instrument/:title", (req, res) => {
-  //instrument/:title
   const elem = dataInstrument.instruments.find(
     (value) => value.titulo === req.params.title
   ); //usar find(Hecho)
@@ -35,9 +35,7 @@ router.get("/instrument/:title", (req, res) => {
   }
 });
 
-router.post(
-  //validar todos los parametros(Hecho)
-  "/instruments",
+router.post("/instruments",
   [
     body("textoDeFondo").notEmpty(),
     body("titulo").notEmpty(),
