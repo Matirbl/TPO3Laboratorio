@@ -5,6 +5,7 @@ var from = 0;
 var limit = 3;
 var range = 3;
 
+//Este módulo se encarga de completar las cards en el index.html usando Ajax.  
 function fillCards(titulo, instrumento) {
   $.ajax({
     url: urlbase + "instrument/" + titulo,
@@ -28,6 +29,7 @@ function fillCards(titulo, instrumento) {
   return false;
 }
 
+//Este módulo se encarga de crear las cards que van a mostrarse en instrumentosPopulares.html
 const loadInstruments = async (from, limit) => {
   const instrumentosRecibidos = await fetch(
     urlbase + `list?limit=${limit}&from=${from}`
@@ -86,7 +88,7 @@ const loadInstruments = async (from, limit) => {
     divBoton.appendChild(adress);
   });
 };
-
+//Este módulo se encarga de actualizar las cards creadas en el módulo anterior.
 const updateInstruments = async (from, limit) => {
   try {
     cards = contenedor.childNodes;
@@ -126,13 +128,11 @@ const nextPage = () => {
   limit += range;
   from += range;
   console.log("valor from: " + from + "valor limit: " + limit);
-
   updateInstruments(from, limit);
 };
 
 const prevPage = () => {
   limit -= range;
   from -= range;
-
   updateInstruments(from, limit);
 };
